@@ -1,30 +1,30 @@
-html, body {
-  height:100%;
-  width:100%;
-  font-family: 'Montserrat', 'Helvetica';
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Montserrat", "Helvetica";
 }
 
 // WRAPPER
-.cover {
-  background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
+.layout-container {
+  background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
   overflow: hidden;
   position: relative;
 }
 
 .wrapper {
-  min-height: 100vh;
+  position: relative;
+  min-height: calc(100vh - 125px);
   min-width: 100vw;
   margin-top: 0;
-  position: relative;
+  padding: 40px;
 }
 
 .main-section {
-  top: 150px;
   width: 100%;
-  padding: 150px 0 0;
 }
 
-.hero-section{
+.hero-section {
   h2 {
     color: white;
     font-weight: bold;
@@ -60,6 +60,11 @@ html, body {
   font-size: 27px;
   margin-top: 80px;
 }
+.self-typed {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 3.5rem;
+}
 
 .hero-welcome-bio {
   margin-top: 20px;
@@ -78,7 +83,6 @@ html, body {
 
 .hero-welcome-wrapper {
   justify-content: flex-end;
-
 }
 
 @media (max-width: 991px) {
@@ -106,17 +110,17 @@ html, body {
   height: 100%;
   position: absolute;
   top: 0;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.6);
+  box-shadow: -17px 13px 41px rgba(13, 78, 158, 0.6);
   border: 2px solid #3bace5;
 
   .shadow-inner {
     width: 100%;
     height: 100%;
-    box-shadow: -17px 13px 13px rgba(0,0,0,0.09);
+    box-shadow: -17px 13px 13px rgba(0, 0, 0, 0.09);
   }
 }
 
 .shadow-custom-2 {
   border: 2px solid #f37d49;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.3);
+  box-shadow: -17px 13px 41px rgba(13, 78, 158, 0.3);
 }
