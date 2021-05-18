@@ -1,0 +1,30 @@
+@import "fonts";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+
+a {
+  font-size: 2rem;
+  color: lightseagreen;
+  padding: 10px;
+  border: 1px dashed lightcoral;
+  border-radius: 8px;
+  font-style: italic;
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+li {
+  color: cornflowerblue;
+  line-height: 2;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover{
+    text-shadow: 0 0 5px rgb(71, 240, 217);
+    font-size: 1.25rem;
+  }
+}
