@@ -1,7 +1,7 @@
 import ReactTyped from "react-typed";
 import { Col, Container, Row } from "reactstrap";
 
-export default function Home() {
+export default function Home({ auth }) {
   return (
     <div className="main-section">
       <div className="background-image">
@@ -28,6 +28,11 @@ export default function Home() {
           <Col md="6" className="hero-welcome-wrapper">
             <div className="hero-welcome-text">
               <h1>
+                {auth.isAuthenticated && (
+                  <p>
+                    Hi, {auth.user.family_name} {auth.user.given_name}
+                  </p>
+                )}
                 Welcome to the portfolio website of Filip Jerga. Get informed, collaborate and discover projects I was
                 working on through the years!
               </h1>

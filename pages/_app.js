@@ -1,23 +1,28 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import BaseLayout from "../components/layouts/BaseLayout";
 import "../public/styles/main.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Auth0Provider } from "@auth0/auth0-react";
-import { useRouter } from "next/router";
+import auth0Client from "../services/auth0";
 
-function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+function MyApp({ Component, pageProps, auth }) {
+  console.log("auth",auth);
 
   return (
-    <Auth0Provider
-      domain="dev-zpiibok9.us.auth0.com"
-      clientId="BbxrRXdW9BtuJtST2IB85CyBMhKmagSR"
-      redirectUri="http://localhost:3000/callback"
-    >
-      <BaseLayout>
-        <Component {...pageProps} />
-      </BaseLayout>
-    </Auth0Provider>
+    <BaseLayout auth={auth}>
+      <Component {...pageProps} auth={auth} />
+    </BaseLayout>
   );
 }
+
+MyApp.getInitialProps = async () => {
+  const { isAuthenticated } = auth0Client;
+  const user = await isAuthenticated();
+
+  return {
+    auth: {
+      user,
+      isAuthenticated: !!user,
+    },
+  };
+};
 
 export default MyApp;

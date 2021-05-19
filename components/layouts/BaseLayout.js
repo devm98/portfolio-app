@@ -1,14 +1,12 @@
 import React from "react";
 import Header from "../shared/Header";
 
-function BaseLayout(props) {
+function BaseLayout({ auth, children, ...rest }) {
   return (
     <div className="layout-container">
-      <Header />
+      <Header auth={auth} />
       <main className="cover">
-        <div className="wrapper">
-          {props.children}
-        </div>
+        <div className="wrapper">{children}</div>
       </main>
     </div>
   );

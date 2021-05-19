@@ -1,14 +1,14 @@
-import React, { useState } from "react";
 import Link from "next/link";
+import React, { useState } from "react";
 import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
-import { useAuth0 } from "@auth0/auth0-react";
+import auth0Client from "../../services/auth0";
 
-const Header = (props) => {
+const Header = ({ auth }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
-  const { loginWithRedirect } = useAuth0();
+  const { login, logout } = auth0Client;
 
   return (
     <Container fluid>
@@ -44,9 +44,15 @@ const Header = (props) => {
                 <NavLink className="port-navbar-link">CV</NavLink>
               </Link>
             </NavItem>
-            <NavItem className="port-navbar-item" onClick={() => loginWithRedirect()}>
-              <NavLink className="port-navbar-link">Login</NavLink>
-            </NavItem>
+            {auth.isAuthenticated ? (
+              <NavItem className="port-navbar-item" onClick={logout}>
+                <NavLink className="port-navbar-link gradient-border">{auth.user.given_name}</NavLink>
+              </NavItem>
+            ) : (
+              <NavItem className="port-navbar-item" onClick={login}>
+                <NavLink className="port-navbar-link">Login</NavLink>
+              </NavItem>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
