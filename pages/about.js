@@ -1,4 +1,5 @@
 import React from 'react'
+import withAuth from '../components/hocs/withAuth'
 
 function About() {
   return (
@@ -8,4 +9,4 @@ function About() {
   )
 }
 
-export default About
+export default withAuth(About);

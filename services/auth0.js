@@ -2,6 +2,7 @@ import auth0 from "auth0-js";
 import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
 import axios from "axios";
+import { getCookieFromReq } from "../helpers/utils";
 
 class Auth0 {
   constructor() {
@@ -15,7 +16,8 @@ class Auth0 {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
-    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.clientAuth = this.clientAuth.bind(this);
+    this.serverAuth = this.serverAuth.bind(this);
   }
 
   login() {
@@ -49,12 +51,12 @@ class Auth0 {
     });
   }
 
-  async isAuthenticated() {
-    const token = Cookies.get("jwt");
-    const verifiedToken = await this.verifyToken(token);
+  // async isAuthenticated() {
+  //   const token = Cookies.get("jwt");
+  //   const verifiedToken = await this.verifyToken(token);
 
-    return verifiedToken;
-  }
+  //   return verifiedToken;
+  // }
 
   async getJWKS() {
     const res = await axios.get("https://dev-zpiibok9.us.auth0.com/.well-known/jwks.json");
@@ -88,6 +90,24 @@ class Auth0 {
           return undefined;
         }
       }
+    }
+
+    return undefined;
+  }
+
+  async clientAuth() {
+    const token = Cookies.getJSON("jwt");
+    const verifiedToken = await this.verifyToken(token);
+
+    return verifiedToken;
+  }
+
+  async serverAuth(req) {
+    if (req.headers.cookie) {
+      const token = getCookieFromReq(req, "jwt");
+      const verifiedToken = await this.verifyToken(token);
+
+      return verifiedToken;
     }
 
     return undefined;

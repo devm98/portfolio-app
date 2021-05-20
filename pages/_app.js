@@ -1,10 +1,12 @@
+import App from "next/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BaseLayout from "../components/layouts/BaseLayout";
 import "../public/styles/main.scss";
 import auth0Client from "../services/auth0";
 
 function MyApp({ Component, pageProps, auth }) {
-  console.log("auth",auth);
+
+  console.log("auth", auth);
 
   return (
     <BaseLayout auth={auth}>
@@ -13,11 +15,13 @@ function MyApp({ Component, pageProps, auth }) {
   );
 }
 
-MyApp.getInitialProps = async () => {
-  const { isAuthenticated } = auth0Client;
-  const user = await isAuthenticated();
+MyApp.getInitialProps = async (appContext) => {
+  const { clientAuth, serverAuth } = auth0Client;
+  const appProps = await App.getInitialProps(appContext);
+  const user = process.browser ? await clientAuth() : await serverAuth(appContext.ctx.req);
 
   return {
+    ...appProps,
     auth: {
       user,
       isAuthenticated: !!user,
