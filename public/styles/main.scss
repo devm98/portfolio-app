@@ -1,6 +1,7 @@
 @import "fonts";
 @import "header";
 @import "index";
+@import "colors";
 
 * {
   margin: 0;
@@ -22,4 +23,73 @@
 ::-webkit-scrollbar-thumb {
   background: rgb(177, 174, 174);
   background: radial-gradient(circle, rgba(177, 174, 174, 1) 0%, rgba(223, 230, 240, 1) 100%);
+}
+
+// --------- PORTFOLIO PAGE -------------
+
+.portfolio-page {
+  min-height: 100vh;
+  background-color: $base-page-white;
+  padding: 15px;
+
+  .portfolio-card {
+    background-image: linear-gradient(45deg, #4e54c8 0%, #8f94fb 100%);
+    border: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+    margin-bottom: 20px;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-5px);
+    }
+
+    &:hover .readMore:before {
+      background: linear-gradient(to right, #ffffff 0%,#ffffff 100%);
+    }
+
+    &-header {
+      padding: 3px;
+      padding-right: 7px;
+      text-align: right;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    &-city {
+
+    }
+
+    &-title {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    &-text {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.3;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+// --------- PORTFOLIO PAGE -------------
+
+.create-portfolio{
+  form {
+    .form-group{
+      margin-top: 15px;
+
+      label{
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+    }
+  }
 }

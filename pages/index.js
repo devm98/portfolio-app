@@ -1,6 +1,7 @@
 import ReactTyped from "react-typed";
 import { Col, Container, Row } from "reactstrap";
 
+
 export default function Home({ auth }) {
   return (
     <div className="main-section">

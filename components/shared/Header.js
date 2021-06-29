@@ -2,16 +2,17 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
 import auth0Client from "../../services/auth0";
+import { useRouter } from 'next/router';
 
 const Header = ({ auth }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const toggle = () => setIsOpen(!isOpen);
-
   const { login, logout } = auth0Client;
 
   return (
-    <Container fluid>
+    <Container fluid className={router.route !== "/" ? "port-navbar-diff" : ""}>
       <Navbar color="transparent" light expand="md" className="port-navbar port-default">
         <NavbarBrand className="port-navbar-brand" href="/">
           Kha Minh Bui

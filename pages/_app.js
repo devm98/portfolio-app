@@ -1,13 +1,11 @@
 import App from "next/app";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 import BaseLayout from "../components/layouts/BaseLayout";
 import "../public/styles/main.scss";
 import auth0Client from "../services/auth0";
 
 function MyApp({ Component, pageProps, auth }) {
-
-  console.log("auth", auth);
-
   return (
     <BaseLayout auth={auth}>
       <Component {...pageProps} auth={auth} />

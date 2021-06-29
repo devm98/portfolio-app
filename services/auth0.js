@@ -9,7 +9,7 @@ class Auth0 {
     this.auth0 = new auth0.WebAuth({
       domain: "dev-zpiibok9.us.auth0.com",
       clientID: "BbxrRXdW9BtuJtST2IB85CyBMhKmagSR",
-      redirectUri: "http://localhost:3000/callback",
+      redirectUri: "http://localhost:3001/callback",
       responseType: "token id_token",
       scope: "openid profile",
     });

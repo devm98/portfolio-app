@@ -1,6 +1,11 @@
 .absolute {
   position: absolute;
 }
+.port-navbar-diff{
+  background-color: #27ae60;
+  position: fixed;
+  z-index: 99999;
+}
 
 // HEADER
 .port-navbar.port-default {
